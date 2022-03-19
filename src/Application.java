@@ -54,7 +54,6 @@ public class Application {
                 }
                 Cash choosingCash = customer.choosingCash(cashes);
                 choosingCash.addCustomer(customer);
-                customer.printPurchases();
             }
             for (Cash c : cashes){
                 c.service();

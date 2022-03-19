@@ -28,11 +28,6 @@ public abstract class Customer {
         return this.purchaseCount;
     }
 
-    public void printPurchases(){
-        System.out.print(this.getName());
-        System.out.println(this.purchaseCount);
-    }
-
     abstract Cash choosingCash(Cash[] cash);
     abstract String getName();
 }
