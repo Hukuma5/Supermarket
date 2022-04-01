@@ -9,17 +9,17 @@ public class Application {
                 maxSize = c.getLenghtOfQueue();
             }
         }
-        System.out.printf("%10s", "Cash №1");
-        System.out.printf("%10s", "Cash №2");
-        System.out.printf("%10s", "Cash №3");
-        System.out.printf("%10s%n", "Cash №4");
+        for (int i = 0; i < 4; i++){
+            System.out.printf("%20s", "Cash №" + i + "(" + cash[i].getSpeed() + ")");
+            if (i == 3) System.out.println();
+        }
         for (int i = 0; i < maxSize; i++){
             for (int j = 0; j < cash.length; j++){
                 if (cash[j].getLenghtOfQueue() - 1 < i){
-                    System.out.printf("%10s", "");
+                    System.out.printf("%20s", "");
                 } else {
                     String name = cash[j].getQueue().get(i).getName();
-                    System.out.printf("%10s", name);
+                    System.out.printf("%20s", name);
                 }
             }
             System.out.println();
@@ -27,6 +27,7 @@ public class Application {
     }
 
     public static void main(String[] args) {
+        System.out.println("Write count of customers");
         Scanner in = new Scanner(System.in);
         int countOfCustomers = in.nextInt();
         Cash[] cashes = new Cash[4];
@@ -39,27 +40,23 @@ public class Application {
             }
             cashes[i] = new Cash(speed);
         }
+        System.out.println("Write count of steps");
         int countOfSteps = in.nextInt();
         for (int i = 0; i < countOfSteps; i++){
             if (countOfCustomers > i) {
-                Random rnd = new Random();
-                int custNum = rnd.nextInt(3);
                 Customer customer;
-                if (custNum == 0) {
-                    customer = new Child();
-                } else if (custNum == 1) {
-                    customer = new Women();
-                } else {
-                    customer = new Man();
-                }
+                CustomerFactory customerFactory = new CustomerFactory();
+                customer = customerFactory.generateCustomer();
                 Cash choosingCash = customer.choosingCash(cashes);
                 choosingCash.addCustomer(customer);
             }
+            printCashes(cashes);
             for (Cash c : cashes){
                 c.service();
             }
-            printCashes(cashes);
         }
+        System.out.println("State of cashes before closing the store:");
+        printCashes(cashes);
 
     }
 }

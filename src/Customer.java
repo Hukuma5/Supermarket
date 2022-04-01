@@ -1,19 +1,17 @@
 import java.util.Random;
 
 public abstract class Customer {
-    private int purchaseCount;
+    private final int purchaseCount;
     private boolean isJustComeIn;
     private int remainsOfPurchases;
 
     public Customer(){
-        int min = 1;
-        int max = 5;
-        int diff = max - min;
-        Random random = new Random();
-        int i = random.nextInt(diff + 1);
-        i += min;
-        this.purchaseCount = i;
-        this.remainsOfPurchases = this.purchaseCount;
+        this.purchaseCount = 0;
+        this.remainsOfPurchases = 0;
+    }
+    public Customer(int n){
+        this.purchaseCount = n;
+        this.remainsOfPurchases = n;
     }
 
     public int getRemainsOfPurchases(){

@@ -1,4 +1,11 @@
 public class Man extends Customer{
+    public Man(){
+        super();
+    }
+    public Man(int n){
+        super(n);
+    }
+
     public Cash choosingCash(Cash[] cash){
         Cash choosenCach = cash[0];
         double[] parametr = new double[] {0, 0, 0, 0};
@@ -26,6 +33,6 @@ public class Man extends Customer{
     }
 
     public String getName(){
-        return "Man";
+        return "Man(" + Integer.toString(getRemainsOfPurchases()) + ")";
     }
 }

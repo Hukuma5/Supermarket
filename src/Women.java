@@ -1,4 +1,11 @@
 public class Women extends Customer{
+    public Women(){
+        super();
+    }
+    public Women(int n){
+        super(n);
+    }
+
     public Cash choosingCash(Cash[] cash){
         int minLenght = cash[0].getLenghtOfQueue();
         Cash choosenCash = cash[0];
@@ -12,6 +19,6 @@ public class Women extends Customer{
     }
 
     public String getName(){
-        return "Women";
+        return "Women(" + Integer.toString(getRemainsOfPurchases()) + ")";
     }
 }

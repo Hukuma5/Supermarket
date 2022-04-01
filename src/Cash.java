@@ -16,18 +16,22 @@ public class Cash {
 
     public void service(){
         int k = this.speed;
+        int removeCounter = 0;
         for (Customer unit : this.queue){
             k -= unit.getRemainsOfPurchases();
             if (k == 0){
                 unit.setRemainsOfPurchases(0);
-                this.queue.remove(unit);
+                removeCounter++;
                 break;
             } else if(k > 0){
-                this.queue.remove(unit);
+                removeCounter++;
             } else {
                 unit.setRemainsOfPurchases(-k);
                 break;
             }
+        }
+        for (int i = 0; i < removeCounter; i++){
+            this.queue.remove();
         }
     }
 
